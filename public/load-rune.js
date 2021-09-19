@@ -1,4 +1,4 @@
-const runeURL = "https://rune-registry.web.app/vm/mobilenet.rune";
+const runeURL = "https://storage.cloud.google.com/rune-model/rune-pipeline.rune";
 var runtime;
 let input;
 let output;
