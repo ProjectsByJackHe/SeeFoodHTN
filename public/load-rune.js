@@ -32,6 +32,7 @@ async function loadRune() {
     const response = await fetch(runeURL);
     const bytes = new Uint8Array(await response.arrayBuffer());
     runtime = await rune.Runtime.load(bytes.buffer,imports);
+    console.log(runtime)
     document.getElementById("log").innerHTML=JSON.stringify(imageCap.parameters);
     document.getElementById("rune").style.visibility = "visible";
     document.getElementById("loader").style.visibility = "hidden";
@@ -39,19 +40,18 @@ async function loadRune() {
 }
 
 async function runRune() {
+    //get input and resize
+    let video = document.getElementById("video");
+    input = rune.TensorFlowModel.resizeImage(video,192);
+    console.log('INPUT: ' + input)
+    runtime.call();
 
-//get input and resize
-let video = document.getElementById("video");
-input = rune.TensorFlowModel.resizeImage(video,224);
-runtime.call();
-
-
-//get output and convert to image
-
-const result = JSON.stringify(output[0].elements);
-console.log(result);
-document.getElementById('result').innerHTML=result;
-document.getElementById("loader").style.visibility = "hidden";
+    //get output and convert to image
+    console.log('OUTPUT: ', output.elements)
+    const result = JSON.stringify(output.elements);
+    console.log(result);
+    document.getElementById('result').innerHTML=result;
+    document.getElementById("loader").style.visibility = "hidden";
 }
 
 //image and video functions
