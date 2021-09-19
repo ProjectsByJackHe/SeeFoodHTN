@@ -1,12 +1,13 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
+import { VERCEL_URL } from './const';
 import './App.css';
 
 function App() {
   const [date, setDate] = useState(null);
   useEffect(() => {
     async function getDate() {
-      const res = await fetch('/api/date');
+      const res = await fetch(VERCEL_URL + '/api/date');
       const newDate = await res.text();
       setDate(newDate);
     }
