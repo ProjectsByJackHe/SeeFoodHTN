@@ -5,13 +5,17 @@
 /.pnp
 .pnp.js
 
+/rune-pipeline/*.rune 
+/rune-pipeline/models/*.tflite
+
 # testing
 /coverage
 
 # production
 /build
 /dist
-
+# testing
+/testing 
 # misc
 .DS_Store
 .env.local
