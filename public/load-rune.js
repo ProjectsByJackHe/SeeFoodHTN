@@ -1,4 +1,4 @@
-const runeURL = "https://storage.cloud.google.com/rune-model/rune-pipeline.rune";
+const runeURL = "https://see-food-htn.vercel.app/thicc.rune";
 var runtime;
 let input;
 let output;
@@ -28,14 +28,14 @@ const imports = {
 };
 
 async function loadRune() {
-document.getElementById("loader").style.visibility = "visible";
-const response = await fetch(runeURL);
-const bytes = new Uint8Array(await response.arrayBuffer());
-runtime = await rune.Runtime.load(bytes.buffer,imports);
-document.getElementById("log").innerHTML=JSON.stringify(imageCap.parameters);
-document.getElementById("rune").style.visibility = "visible";
-document.getElementById("loader").style.visibility = "hidden";
-startCamera();
+    document.getElementById("loader").style.visibility = "visible";
+    const response = await fetch(runeURL);
+    const bytes = new Uint8Array(await response.arrayBuffer());
+    runtime = await rune.Runtime.load(bytes.buffer,imports);
+    document.getElementById("log").innerHTML=JSON.stringify(imageCap.parameters);
+    document.getElementById("rune").style.visibility = "visible";
+    document.getElementById("loader").style.visibility = "hidden";
+    startCamera();
 }
 
 async function runRune() {
@@ -62,13 +62,12 @@ let click_button = document.getElementById("click-photo");
 let canvas = document.getElementById("capture");
 
 async function startCamera() {
-let stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
-video.setAttribute("playsinline", true);
-video.srcObject = stream;
-
+    let stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
+    video.setAttribute("playsinline", true);
+    video.srcObject = stream;
 }
 
 window.onload = function() {
-loadRune();
+    loadRune();
 };
 document.getElementById("loader").style.visibility = "hidden";
